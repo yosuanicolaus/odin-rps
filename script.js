@@ -36,7 +36,6 @@ function playRound(playerSelection, computerSelection, r){
         return `your input isn't either rock, paper, or scissors!\ncheck your spelling!`
     }
 
-
     if (r == result[0]) {computerScore += 1}
     else if (r == result[1]) {playerScore += 1}
 
@@ -56,5 +55,6 @@ function game(playerSelection, computerSelection){
     return `Final Result : ${finalResult}`
 }
 
-
+alert(`Welcome to Rock Paper Scissors! This is a console game where you type out either rock, paper, or scissors into a prompt input. You will be battling the computer, via the console! To access it, just press F12 on your keyboard, and select the console window. Happy playing!`);
+console.log(` - ROCK - PAPER - SCISSORS - \nPlay against your Computer!`);
 console.log(game(playerSelection, computerSelection));
