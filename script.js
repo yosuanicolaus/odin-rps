@@ -12,7 +12,12 @@ function computerPlay(){
     return rps[randNum];
 }
 
+function capitalConvert(str){
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
 function playRound(playerSelection, computerSelection, r){
+    playerSelection = capitalConvert(prompt("Choose your weapon (rock / paper / scissors)"));
     computerSelection = computerPlay();
 
     if (playerSelection == rps[0]){
