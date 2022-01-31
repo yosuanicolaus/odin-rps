@@ -1,0 +1,10 @@
+body {
+    background: rgb(29, 29, 29);
+    color: antiquewhite;
+    text-align: center;
+}
+
+button {
+    width: 5 rem;
+    height: 5 rem;
+}

@@ -16,8 +16,8 @@ function capitalConvert(str){
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
-function playRound(playerSelection, computerSelection, r){
-    playerSelection = capitalConvert(prompt("Choose your weapon (rock / paper / scissors)"));
+function playRound(buttonID, computerSelection, r){
+    playerSelection = rps[buttonID];
     computerSelection = computerPlay();
 
     if (playerSelection == rps[0]){
@@ -55,6 +55,11 @@ function game(playerSelection, computerSelection){
     return `Final Result : ${finalResult}`
 }
 
-alert(`Welcome to Rock Paper Scissors! This is a console game where you type out either rock, paper, or scissors into a prompt input. You will be battling the computer, via the console! To access it, just press F12 on your keyboard, and select the console window. Happy playing!`);
-console.log(` - ROCK - PAPER - SCISSORS - \nPlay against your Computer!`);
-console.log(game(playerSelection, computerSelection));
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        console.log(playRound(button.id));
+    });
+});
