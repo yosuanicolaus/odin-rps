@@ -1,7 +1,17 @@
+html, body {
+    height: 98%;
+}
+
 body {
     background: rgb(29, 29, 29);
     color: antiquewhite;
     text-align: center;
+    border: 2px solid red;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 button {
