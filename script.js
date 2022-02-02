@@ -7,6 +7,13 @@ let r;
 let playerSelection;
 let computerSelection;
 
+const buttons = document.querySelectorAll('button');
+const text = document.querySelector('div');
+
+const d1 = document.getElementById('d1');
+const d2 = document.getElementById('d2');
+const d3 = document.getElementById('d3');
+
 function computerPlay(){
     let randNum = Math.floor(Math.random() * 3);
     return rps[randNum];
@@ -16,8 +23,8 @@ function capitalConvert(str){
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
-function playRound(playerSelection, computerSelection, r){
-    playerSelection = capitalConvert(prompt("Choose your weapon (rock / paper / scissors)"));
+function playRound(buttonID, computerSelection, r){
+    playerSelection = rps[buttonID];
     computerSelection = computerPlay();
 
     if (playerSelection == rps[0]){
@@ -32,14 +39,16 @@ function playRound(playerSelection, computerSelection, r){
         if (computerSelection == rps[0]) {r = result[0]}
         else if (computerSelection == rps[1]) {r = result[1]}
         else if (computerSelection == rps[2]) {r = result[2]}
-    } else {
-        return `your input isn't either rock, paper, or scissors!\ncheck your spelling!`
-    }
+    } else return "error, please try again."
 
     if (r == result[0]) {computerScore += 1}
     else if (r == result[1]) {playerScore += 1}
 
-    return `Player - ${playerSelection} vs ${computerSelection} - Computer \nResult : ${r}\nScoreboard : Player ${playerScore} || ${computerScore} Computer\n`;
+    d1.textContent = `Player - ${playerSelection} vs ${computerSelection} - Computer`;
+    d2.textContent = `Result : ${r}`;
+    d3.textContent = `Scoreboard : Player ${playerScore} || ${computerScore} Computer`;
+
+    return `Player - ${playerSelection} vs ${computerSelection} - Computer \r\nResult : ${r}\r\nScoreboard : Player ${playerScore} || ${computerScore} Computer\n`;
 }
 
 function game(playerSelection, computerSelection){
@@ -55,6 +64,9 @@ function game(playerSelection, computerSelection){
     return `Final Result : ${finalResult}`
 }
 
-alert(`Welcome to Rock Paper Scissors! This is a console game where you type out either rock, paper, or scissors into a prompt input. You will be battling the computer, via the console! To access it, just press F12 on your keyboard, and select the console window. Happy playing!`);
-console.log(` - ROCK - PAPER - SCISSORS - \nPlay against your Computer!`);
-console.log(game(playerSelection, computerSelection));
+
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.id);
+    })});
