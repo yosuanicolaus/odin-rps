@@ -1,26 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="./style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./style.css" />
     <script src="./script.js" defer></script>
-    
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/cyborg/bootstrap.min.css"
+    />
+
     <title>Rock Paper Scissors!</title>
-</head>
-<body>
-    <div>
-        <button id="0">Rock</button>
-        <button id="1">Paper</button>
-        <button id="2">Scissors</button>
+  </head>
+  <body
+    class="text-center d-flex align-items-center justify-content-center flex-column vh-100 gap-4"
+  >
+    <h2>Rock Paper Scissors!</h2>
+
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-5 d-flex align-items-center justify-content-center flex-column"
+        >
+          <div>You</div>
+          <input type="text" name="name" id="name" placeholder="John Doe" />
+        </div>
+        <div
+          class="col-2 lead d-flex align-items-center justify-content-center"
+        >
+          VS
+        </div>
+        <div class="col-5">
+          <div class="d-grid gap-1">
+            <button class="btn btn-info">AI Level 0</button>
+            <button class="btn btn-secondary">AI Level 1</button>
+            <button class="btn btn-warning">AI Level 2</button>
+            <button class="btn btn-danger">AI Level 3</button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div>Click one of the 3 buttons above to play</div>
-
-    <div id="d1">d</div>
-    <div id="d2">d</div>
-    <div id="d3">d</div>
-</body>
+    <button class="btn btn-lg btn-outline-primary">Play!</button>
+  </body>
 </html>
