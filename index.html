@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="./style.css" />
-    <script src="./script.js" defer></script>
+    <script src="./index.js" defer></script>
 
     <link
       rel="stylesheet"
@@ -20,13 +19,19 @@
   >
     <h2>Rock Paper Scissors!</h2>
 
-    <div class="container">
+    <form class="container" action="game.html">
       <div class="row">
         <div
           class="col-5 d-flex align-items-center justify-content-center flex-column"
         >
           <div>You</div>
-          <input type="text" name="name" id="name" placeholder="John Doe" />
+          <input
+            type="text"
+            name="player"
+            id="player"
+            placeholder="John Doe"
+            required
+          />
         </div>
         <div
           class="col-2 lead d-flex align-items-center justify-content-center"
@@ -38,49 +43,51 @@
             <input
               type="radio"
               class="btn-check"
-              name="btnradio"
-              id="btnradio1"
-              autocomplete="off"
-              checked
+              name="AI"
+              id="AI0"
+              value="AI Level 0"
             />
-            <label class="btn btn-outline-info" for="btnradio1"
+            <label class="btn btn-outline-secondary" for="AI0"
               >AI Level 0</label
             >
             <input
               type="radio"
               class="btn-check"
-              name="btnradio"
-              id="btnradio2"
-              autocomplete="off"
+              name="AI"
+              id="AI1"
+              value="AI Level 1"
+              checked
             />
-            <label class="btn btn-outline-secondary" for="btnradio2"
+            <label class="btn btn-outline-secondary" for="AI1"
               >AI Level 1</label
             >
             <input
               type="radio"
               class="btn-check"
-              name="btnradio"
-              id="btnradio3"
-              autocomplete="off"
+              name="AI"
+              id="AI2"
+              value="AI Level 2"
             />
-            <label class="btn btn-outline-warning" for="btnradio3"
-              >AI Level 2</label
-            >
+            <label class="btn btn-outline-warning" for="AI2">AI Level 2</label>
             <input
               type="radio"
               class="btn-check"
-              name="btnradio"
-              id="btnradio4"
-              autocomplete="off"
+              name="AI"
+              id="AI3"
+              value="AI Level 3"
             />
-            <label class="btn btn-outline-danger" for="btnradio4"
-              >AI Level 3</label
-            >
+            <label class="btn btn-outline-danger" for="AI3">AI Level 3</label>
           </div>
         </div>
       </div>
-    </div>
 
-    <button class="btn btn-lg btn-outline-primary">Play!</button>
+      <button
+        type="submit"
+        class="btn btn-lg btn-outline-primary"
+        id="play-button"
+      >
+        Play!
+      </button>
+    </form>
   </body>
 </html>
