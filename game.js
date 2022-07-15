@@ -70,6 +70,7 @@ function battle() {
   compareChoice(playerChoice, AIChoice);
   updateCard(playerCard, playerCardName, playerChoice);
   updateCard(AICard, AICardName, AIChoice);
+  updateScore();
   switchDisplay();
 }
 
@@ -130,27 +131,27 @@ function generateAIChoice(AILevel, playerChoice) {
 function compareChoice(playerChoice, AIChoice) {
   if (playerChoice === "r") {
     if (AIChoice === "r") {
-      draw();
+      draw(playerChoice);
     } else if (AIChoice === "p") {
-      lose();
+      lose(playerChoice, AIChoice);
     } else if (AIChoice === "s") {
-      win();
+      win(playerChoice, AIChoice);
     }
   } else if (playerChoice === "p") {
     if (AIChoice === "r") {
-      win();
+      win(playerChoice, AIChoice);
     } else if (AIChoice === "p") {
-      draw();
+      draw(playerChoice);
     } else if (AIChoice === "s") {
-      lose();
+      lose(playerChoice, AIChoice);
     }
   } else if (playerChoice === "s") {
     if (AIChoice === "r") {
-      lose();
+      lose(playerChoice, AIChoice);
     } else if (AIChoice === "p") {
-      win();
+      win(playerChoice, AIChoice);
     } else if (AIChoice === "s") {
-      draw();
+      draw(playerChoice);
     }
   }
 }
@@ -168,8 +169,40 @@ function updateCard(card, cardName, choice) {
   }
 }
 
-function draw() {}
+function generateWordChoice(choice) {
+  if (choice === "r") {
+    return "Rock";
+  } else if (choice === "p") {
+    return "Paper";
+  } else if (choice === "s") {
+    return "Scissor";
+  }
+}
 
-function lose() {}
+function draw(playerChoice) {
+  let choice = generateWordChoice(playerChoice);
+  battleInfo.textContent = `Both plays ${choice}. Game is draw.`;
+}
 
-function win() {}
+function lose(playerChoice, AIChoice) {
+  playerChoice = generateWordChoice(playerChoice);
+  AIChoice = generateWordChoice(AIChoice);
+  battleInfo.textContent = `${AIChoice} beats ${playerChoice}. You lose.`;
+  AIScore++;
+}
+
+function win(playerChoice, AIChoice) {
+  playerChoice = generateWordChoice(playerChoice);
+  AIChoice = generateWordChoice(AIChoice);
+  battleInfo.textContent = `${playerChoice} beats ${AIChoice}. You win.`;
+  playerScore++;
+}
+
+function updateScore() {
+  DOMplayerScore.textContent = playerScore;
+  DOMAIScore.textContent = AIScore;
+}
+
+btnNextRound.onclick = () => {
+  switchDisplay();
+};
