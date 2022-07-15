@@ -16,6 +16,9 @@ const playerCard = document.getElementById("player-card");
 const playerCardName = document.getElementById("player-card-name");
 const AICard = document.getElementById("AI-card");
 const AICardName = document.getElementById("AI-card-name");
+
+const resultPlayer = document.getElementById("result-player");
+const resultAI = document.getElementById("result-AI");
 const battleInfo = document.getElementById("battle-info");
 const btnNextRound = document.getElementById("next-round");
 
@@ -182,12 +185,16 @@ function generateWordChoice(choice) {
 function draw(playerChoice) {
   let choice = generateWordChoice(playerChoice);
   battleInfo.textContent = `Both plays ${choice}. Game is draw.`;
+  resultPlayer.className = "btn btn-outline-secondary border-5";
+  resultAI.className = "btn btn-outline-secondary border-5";
 }
 
 function lose(playerChoice, AIChoice) {
   playerChoice = generateWordChoice(playerChoice);
   AIChoice = generateWordChoice(AIChoice);
   battleInfo.textContent = `${AIChoice} beats ${playerChoice}. You lose.`;
+  resultPlayer.className = "btn btn-outline-danger border-5";
+  resultAI.className = "btn btn-outline-success border-5";
   AIScore++;
 }
 
@@ -195,6 +202,8 @@ function win(playerChoice, AIChoice) {
   playerChoice = generateWordChoice(playerChoice);
   AIChoice = generateWordChoice(AIChoice);
   battleInfo.textContent = `${playerChoice} beats ${AIChoice}. You win.`;
+  resultPlayer.className = "btn btn-outline-success border-5";
+  resultAI.className = "btn btn-outline-danger border-5";
   playerScore++;
 }
 
