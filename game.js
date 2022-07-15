@@ -19,27 +19,59 @@ const AICardName = document.getElementById("AI-card-name");
 const battleInfo = document.getElementById("battle-info");
 const btnNextRound = document.getElementById("next-round");
 
+const rockSVG = "assets/circle.svg";
+const scissorSVG = "assets/scissors.svg";
+const paperSVG = "assets/square.svg";
+
 DOMplayerName.textContent = localStorage.getItem("playerName");
 DOMAIName.textContent = localStorage.getItem("AIName");
 let playerScore = 0;
 let AIScore = 0;
 let AILevel = Number(localStorage.getItem("AIName").slice(-1));
+let playerChoice = "r";
 
 // for debugging
 document.onkeydown = (e) => {
   if (e.key === "f") {
     console.log("switch display");
-    if (state === "CHOOSE") {
-      state = STATES[1];
-      cardPage.style.display = "none";
-      battlePage.style.display = "block";
-    } else if (state === "BATTLE") {
-      state = STATES[0];
-      cardPage.style.display = "block";
-      battlePage.style.display = "none";
-    }
+    switchDisplay();
   }
 };
+
+function switchDisplay() {
+  if (state === "CHOOSE") {
+    state = STATES[1];
+    cardPage.style.display = "none";
+    battlePage.style.display = "block";
+  } else if (state === "BATTLE") {
+    state = STATES[0];
+    cardPage.style.display = "block";
+    battlePage.style.display = "none";
+  }
+}
+
+btnRock.onclick = () => {
+  playerChoice = "r";
+  battle();
+};
+
+btnPaper.onclick = () => {
+  playerChoice = "p";
+  battle();
+};
+
+btnScissor.onclick = () => {
+  playerChoice = "s";
+  battle();
+};
+
+function battle() {
+  let AIChoice = generateAIChoice(AILevel, playerChoice);
+  compareChoice(playerChoice, AIChoice);
+  updateCard(playerCard, playerCardName, playerChoice);
+  updateCard(AICard, AICardName, AIChoice);
+  switchDisplay();
+}
 
 function randomChoice() {
   const r = Math.random();
@@ -94,3 +126,50 @@ function generateAIChoice(AILevel, playerChoice) {
       return getWinChoice(playerChoice);
   }
 }
+
+function compareChoice(playerChoice, AIChoice) {
+  if (playerChoice === "r") {
+    if (AIChoice === "r") {
+      draw();
+    } else if (AIChoice === "p") {
+      lose();
+    } else if (AIChoice === "s") {
+      win();
+    }
+  } else if (playerChoice === "p") {
+    if (AIChoice === "r") {
+      win();
+    } else if (AIChoice === "p") {
+      draw();
+    } else if (AIChoice === "s") {
+      lose();
+    }
+  } else if (playerChoice === "s") {
+    if (AIChoice === "r") {
+      lose();
+    } else if (AIChoice === "p") {
+      win();
+    } else if (AIChoice === "s") {
+      draw();
+    }
+  }
+}
+
+function updateCard(card, cardName, choice) {
+  if (choice === "r") {
+    card.src = rockSVG;
+    cardName.textContent = "Rock";
+  } else if (choice === "p") {
+    card.src = paperSVG;
+    cardName.textContent = "Paper";
+  } else if (choice === "s") {
+    card.src = scissorSVG;
+    cardName.textContent = "Scissor";
+  }
+}
+
+function draw() {}
+
+function lose() {}
+
+function win() {}
